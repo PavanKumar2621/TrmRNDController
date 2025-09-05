@@ -36,8 +36,14 @@ class TrmRNDController(QWidget):  # Wrapper class
 
         # Send Control
         self.ui.btnClear.clicked.connect(lambda: self.ui.textbox.clear())
+        # self.ui.btnClear.clicked.connect(self.Clear)
         self.ui.btnRND.clicked.connect(lambda: self.communication.controlsRND())
 
+#     def Clear(self):
+#         full_packet = bytes.fromhex("b1 b1 09 5a 00 00 00 e1")
+#         board_on_time = full_packet[3:7]
+#         self.communication.convertOnTime(board_on_time)
+        
     def changeBlkSwAllControls(self, index):
         for i in range(1, 9):
             getattr(self.ui, f'blkSw{i}').setCurrentIndex(index)
@@ -154,7 +160,7 @@ class Ui_Form(object):
 "/* Arrow image */\n"
 "QComboBox::down-arrow {\n"
 " \n"
-"	image: url(:/resources/arrow.png);\n"
+"	image: url(:/newPrefix/resources/arrow.png);\n"
 "    width: 12px;\n"
 "    height: 12px;\n"
 "}\n"
@@ -319,7 +325,7 @@ class Ui_Form(object):
 "}\n"
 "QComboBox::down-arrow {\n"
 "    \n"
-"	image: url(:/resources/arrow.png);\n"
+"	image: url(:/newPrefix/resources/arrow.png);\n"
 "    width: 12px;\n"
 "    height: 12px;\n"
 "}\n"
@@ -329,8 +335,8 @@ class Ui_Form(object):
 "    background-color: #2a2f3b;              /* dark background */\n"
 "    color: white;                           /* white text */\n"
 "    selection-background-color: #323741;    /* slightly lighter dark when selected */\n"
-"    selection"
-                        "-color: white;\n"
+"   "
+                        " selection-color: white;\n"
 "    border: 1px solid #444;                 /* subtle dark border */\n"
 "    padding: 5px;\n"
 "    outline: 0;\n"
@@ -362,8 +368,8 @@ class Ui_Form(object):
 "    subcontrol-origin: margin;\n"
 "}\n"
 "\n"
-"QComboBox QAbstractItemView QScrollBar::add-page:ve"
-                        "rtical,\n"
+"QComboBox QAbstractItemView QScrollBar::a"
+                        "dd-page:vertical,\n"
 "QComboBox QAbstractItemView QScrollBar::sub-page:vertical {\n"
 "    background: none;\n"
 "}\n"
@@ -493,7 +499,7 @@ class Ui_Form(object):
 "\n"
 "QComboBox::down-arrow {\n"
 "  \n"
-"	image: url(:/resources/arrow.png);\n"
+"	image: url(:/newPrefix/resources/arrow.png);\n"
 "    width: 12px;\n"
 "    height: 12px;\n"
 "}\n"
@@ -504,8 +510,8 @@ class Ui_Form(object):
 "    color: white;                           /* white text */\n"
 "    selection-background-color: #323741;    /* slightly lighter dark when selected */\n"
 "    selection-color: white;\n"
-"    border: 1p"
-                        "x solid #444;                 /* subtle dark border */\n"
+"    "
+                        "border: 1px solid #444;                 /* subtle dark border */\n"
 "    padding: 5px;\n"
 "    outline: 0;\n"
 "    border-radius: 5px;\n"
@@ -537,8 +543,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QComboBox QAbstractItemView QScrollBar::add-page:vertical,\n"
-"QComboBox QAbstractIt"
-                        "emView QScrollBar::sub-page:vertical {\n"
+"QComboBox Q"
+                        "AbstractItemView QScrollBar::sub-page:vertical {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -666,7 +672,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QComboBox::down-arrow {\n"
-"	image: url(:/resources/arrow.png);\n"
+"	image: url(:/newPrefix/resources/arrow.png);\n"
 "    width: 12px;\n"
 "    height: 12px;\n"
 "}\n"
@@ -677,8 +683,8 @@ class Ui_Form(object):
 "    color: white;                           /* white text */\n"
 "    selection-background-color: #323741;    /* slightly lighter dark when selected */\n"
 "    selection-color: white;\n"
-"    border: 1px solid"
-                        " #444;                 /* subtle dark border */\n"
+"    border:"
+                        " 1px solid #444;                 /* subtle dark border */\n"
 "    padding: 5px;\n"
 "    outline: 0;\n"
 "    border-radius: 5px;\n"
@@ -710,8 +716,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QComboBox QAbstractItemView QScrollBar::add-page:vertical,\n"
-"QComboBox QAbstractItemView "
-                        "QScrollBar::sub-page:vertical {\n"
+"QComboBox QAbstrac"
+                        "tItemView QScrollBar::sub-page:vertical {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -780,7 +786,7 @@ class Ui_Form(object):
         self.lblkCTL.setGeometry(QRect(83, 27, 62, 22))
         self.radar_groupbox_22 = QGroupBox(self.groupBox)
         self.radar_groupbox_22.setObjectName(u"radar_groupbox_22")
-        self.radar_groupbox_22.setGeometry(QRect(10, 440, 861, 191))
+        self.radar_groupbox_22.setGeometry(QRect(10, 445, 861, 188))
         self.radar_groupbox_22.setFont(font)
         self.radar_groupbox_22.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -844,7 +850,7 @@ class Ui_Form(object):
 "")
         self.radar_groupbox_23 = QGroupBox(self.radar_groupbox_22)
         self.radar_groupbox_23.setObjectName(u"radar_groupbox_23")
-        self.radar_groupbox_23.setGeometry(QRect(10, 20, 251, 161))
+        self.radar_groupbox_23.setGeometry(QRect(10, 18, 251, 161))
         self.radar_groupbox_23.setFont(font)
         self.radar_groupbox_23.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -926,31 +932,31 @@ class Ui_Form(object):
         self.fpLf3.setObjectName(u"fpLf3")
         self.fpLf3.setGeometry(QRect(80, 55, 25, 25))
         self.fpLf3.setFont(font2)
-        self.fpLf3.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf3.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf3.setScaledContents(True)
         self.fpLf5 = QLabel(self.radar_groupbox_23)
         self.fpLf5.setObjectName(u"fpLf5")
         self.fpLf5.setGeometry(QRect(80, 88, 25, 25))
         self.fpLf5.setFont(font2)
-        self.fpLf5.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf5.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf5.setScaledContents(True)
         self.fpLf1 = QLabel(self.radar_groupbox_23)
         self.fpLf1.setObjectName(u"fpLf1")
         self.fpLf1.setGeometry(QRect(80, 21, 25, 25))
         self.fpLf1.setFont(font2)
-        self.fpLf1.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf1.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf1.setScaledContents(True)
         self.fpLf7 = QLabel(self.radar_groupbox_23)
         self.fpLf7.setObjectName(u"fpLf7")
         self.fpLf7.setGeometry(QRect(80, 122, 25, 25))
         self.fpLf7.setFont(font2)
-        self.fpLf7.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf7.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf7.setScaledContents(True)
         self.fpLf8 = QLabel(self.radar_groupbox_23)
         self.fpLf8.setObjectName(u"fpLf8")
         self.fpLf8.setGeometry(QRect(200, 121, 25, 25))
         self.fpLf8.setFont(font2)
-        self.fpLf8.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf8.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf8.setScaledContents(True)
         self.label_138 = QLabel(self.radar_groupbox_23)
         self.label_138.setObjectName(u"label_138")
@@ -960,13 +966,13 @@ class Ui_Form(object):
         self.fpLf4.setObjectName(u"fpLf4")
         self.fpLf4.setGeometry(QRect(200, 54, 25, 25))
         self.fpLf4.setFont(font2)
-        self.fpLf4.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf4.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf4.setScaledContents(True)
         self.fpLf2 = QLabel(self.radar_groupbox_23)
         self.fpLf2.setObjectName(u"fpLf2")
         self.fpLf2.setGeometry(QRect(200, 20, 25, 25))
         self.fpLf2.setFont(font2)
-        self.fpLf2.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf2.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf2.setScaledContents(True)
         self.label_141 = QLabel(self.radar_groupbox_23)
         self.label_141.setObjectName(u"label_141")
@@ -976,7 +982,7 @@ class Ui_Form(object):
         self.fpLf6.setObjectName(u"fpLf6")
         self.fpLf6.setGeometry(QRect(200, 87, 25, 25))
         self.fpLf6.setFont(font2)
-        self.fpLf6.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpLf6.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpLf6.setScaledContents(True)
         self.label_143 = QLabel(self.radar_groupbox_23)
         self.label_143.setObjectName(u"label_143")
@@ -988,7 +994,7 @@ class Ui_Form(object):
         self.label_144.setFont(font2)
         self.radar_groupbox_26 = QGroupBox(self.radar_groupbox_22)
         self.radar_groupbox_26.setObjectName(u"radar_groupbox_26")
-        self.radar_groupbox_26.setGeometry(QRect(530, 20, 321, 161))
+        self.radar_groupbox_26.setGeometry(QRect(530, 18, 321, 161))
         self.radar_groupbox_26.setFont(font)
         self.radar_groupbox_26.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -1106,7 +1112,7 @@ class Ui_Form(object):
         self.label_184.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.radar_groupbox_24 = QGroupBox(self.radar_groupbox_22)
         self.radar_groupbox_24.setObjectName(u"radar_groupbox_24")
-        self.radar_groupbox_24.setGeometry(QRect(270, 20, 251, 161))
+        self.radar_groupbox_24.setGeometry(QRect(270, 18, 251, 161))
         self.radar_groupbox_24.setFont(font)
         self.radar_groupbox_24.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -1172,49 +1178,49 @@ class Ui_Form(object):
         self.fpRl3.setObjectName(u"fpRl3")
         self.fpRl3.setGeometry(QRect(80, 55, 25, 25))
         self.fpRl3.setFont(font2)
-        self.fpRl3.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl3.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl3.setScaledContents(True)
         self.fpRl5 = QLabel(self.radar_groupbox_24)
         self.fpRl5.setObjectName(u"fpRl5")
         self.fpRl5.setGeometry(QRect(80, 88, 25, 25))
         self.fpRl5.setFont(font2)
-        self.fpRl5.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl5.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl5.setScaledContents(True)
         self.fpRl1 = QLabel(self.radar_groupbox_24)
         self.fpRl1.setObjectName(u"fpRl1")
         self.fpRl1.setGeometry(QRect(80, 21, 25, 25))
         self.fpRl1.setFont(font2)
-        self.fpRl1.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl1.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl1.setScaledContents(True)
         self.fpRl7 = QLabel(self.radar_groupbox_24)
         self.fpRl7.setObjectName(u"fpRl7")
         self.fpRl7.setGeometry(QRect(80, 122, 25, 25))
         self.fpRl7.setFont(font2)
-        self.fpRl7.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl7.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl7.setScaledContents(True)
         self.fpRl8 = QLabel(self.radar_groupbox_24)
         self.fpRl8.setObjectName(u"fpRl8")
         self.fpRl8.setGeometry(QRect(200, 121, 25, 25))
         self.fpRl8.setFont(font2)
-        self.fpRl8.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl8.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl8.setScaledContents(True)
         self.fpRl4 = QLabel(self.radar_groupbox_24)
         self.fpRl4.setObjectName(u"fpRl4")
         self.fpRl4.setGeometry(QRect(200, 54, 25, 25))
         self.fpRl4.setFont(font2)
-        self.fpRl4.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl4.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl4.setScaledContents(True)
         self.fpRl2 = QLabel(self.radar_groupbox_24)
         self.fpRl2.setObjectName(u"fpRl2")
         self.fpRl2.setGeometry(QRect(200, 20, 25, 25))
         self.fpRl2.setFont(font2)
-        self.fpRl2.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl2.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl2.setScaledContents(True)
         self.fpRl6 = QLabel(self.radar_groupbox_24)
         self.fpRl6.setObjectName(u"fpRl6")
         self.fpRl6.setGeometry(QRect(200, 87, 25, 25))
         self.fpRl6.setFont(font2)
-        self.fpRl6.setPixmap(QPixmap(u":/resources/Off.png"))
+        self.fpRl6.setPixmap(QPixmap(u":/newPrefix/resources/Off.png"))
         self.fpRl6.setScaledContents(True)
         self.label_145 = QLabel(self.radar_groupbox_24)
         self.label_145.setObjectName(u"label_145")
@@ -1250,7 +1256,7 @@ class Ui_Form(object):
         self.label_160.setFont(font2)
         self.radar_groupbox_25 = QGroupBox(self.groupBox)
         self.radar_groupbox_25.setObjectName(u"radar_groupbox_25")
-        self.radar_groupbox_25.setGeometry(QRect(880, 400, 201, 231))
+        self.radar_groupbox_25.setGeometry(QRect(880, 380, 201, 253))
         self.radar_groupbox_25.setFont(font)
         self.radar_groupbox_25.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -1314,61 +1320,70 @@ class Ui_Form(object):
 "")
         self.label_161 = QLabel(self.radar_groupbox_25)
         self.label_161.setObjectName(u"label_161")
-        self.label_161.setGeometry(QRect(31, 59, 61, 26))
+        self.label_161.setGeometry(QRect(31, 59, 61, 16))
         self.label_161.setFont(font2)
         self.label_161.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_165 = QLabel(self.radar_groupbox_25)
         self.label_165.setObjectName(u"label_165")
-        self.label_165.setGeometry(QRect(31, 25, 77, 26))
+        self.label_165.setGeometry(QRect(31, 25, 77, 21))
         self.label_165.setFont(font2)
         self.label_165.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_166 = QLabel(self.radar_groupbox_25)
         self.label_166.setObjectName(u"label_166")
-        self.label_166.setGeometry(QRect(31, 92, 61, 26))
+        self.label_166.setGeometry(QRect(31, 92, 61, 16))
         self.label_166.setFont(font2)
         self.label_166.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_167 = QLabel(self.radar_groupbox_25)
         self.label_167.setObjectName(u"label_167")
-        self.label_167.setGeometry(QRect(34, 162, 58, 26))
+        self.label_167.setGeometry(QRect(34, 162, 58, 16))
         self.label_167.setFont(font2)
         self.label_167.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_171 = QLabel(self.radar_groupbox_25)
         self.label_171.setObjectName(u"label_171")
-        self.label_171.setGeometry(QRect(34, 128, 58, 26))
+        self.label_171.setGeometry(QRect(34, 128, 58, 16))
         self.label_171.setFont(font2)
         self.label_171.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_172 = QLabel(self.radar_groupbox_25)
         self.label_172.setObjectName(u"label_172")
-        self.label_172.setGeometry(QRect(34, 195, 58, 26))
+        self.label_172.setGeometry(QRect(34, 195, 58, 16))
         self.label_172.setFont(font2)
         self.label_172.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.v5Mon1 = QLabel(self.radar_groupbox_25)
         self.v5Mon1.setObjectName(u"v5Mon1")
-        self.v5Mon1.setGeometry(QRect(130, 128, 41, 26))
+        self.v5Mon1.setGeometry(QRect(130, 125, 61, 21))
         self.v5Mon1.setFont(font2)
         self.v5Mon2 = QLabel(self.radar_groupbox_25)
         self.v5Mon2.setObjectName(u"v5Mon2")
-        self.v5Mon2.setGeometry(QRect(130, 162, 41, 26))
+        self.v5Mon2.setGeometry(QRect(130, 158, 61, 21))
         self.v5Mon2.setFont(font2)
         self.v45Mon = QLabel(self.radar_groupbox_25)
         self.v45Mon.setObjectName(u"v45Mon")
-        self.v45Mon.setGeometry(QRect(130, 195, 41, 26))
+        self.v45Mon.setGeometry(QRect(130, 189, 61, 21))
         self.v45Mon.setFont(font2)
         self.current = QLabel(self.radar_groupbox_25)
         self.current.setObjectName(u"current")
-        self.current.setGeometry(QRect(130, 25, 41, 26))
+        self.current.setGeometry(QRect(130, 25, 61, 21))
         self.current.setFont(font2)
         self.v48M1 = QLabel(self.radar_groupbox_25)
         self.v48M1.setObjectName(u"v48M1")
-        self.v48M1.setGeometry(QRect(130, 59, 41, 26))
+        self.v48M1.setGeometry(QRect(130, 56, 61, 21))
         self.v48M1.setFont(font2)
         self.v48M2 = QLabel(self.radar_groupbox_25)
         self.v48M2.setObjectName(u"v48M2")
-        self.v48M2.setGeometry(QRect(130, 92, 41, 26))
+        self.v48M2.setGeometry(QRect(130, 89, 61, 21))
         self.v48M2.setFont(font2)
+        self.label_174 = QLabel(self.radar_groupbox_25)
+        self.label_174.setObjectName(u"label_174")
+        self.label_174.setGeometry(QRect(34, 226, 60, 16))
+        self.label_174.setFont(font2)
+        self.label_174.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.v45Mon2 = QLabel(self.radar_groupbox_25)
+        self.v45Mon2.setObjectName(u"v45Mon2")
+        self.v45Mon2.setGeometry(QRect(130, 220, 61, 21))
+        self.v45Mon2.setFont(font2)
         self.radar_groupbox_32 = QGroupBox(self.groupBox)
         self.radar_groupbox_32.setObjectName(u"radar_groupbox_32")
-        self.radar_groupbox_32.setGeometry(QRect(760, 200, 321, 181))
+        self.radar_groupbox_32.setGeometry(QRect(760, 190, 321, 181))
         self.radar_groupbox_32.setFont(font)
         self.radar_groupbox_32.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -1393,7 +1408,7 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QComboBox::down-arrow {\n"
-"	image: url(:/resources/arrow.png);\n"
+"	image: url(:/newPrefix/resources/arrow.png);\n"
 "    width: 12px;\n"
 "    height: 12px;\n"
 "}\n"
@@ -1404,8 +1419,8 @@ class Ui_Form(object):
 "    color: white;                           /* white text */\n"
 "    selection-background-color: #323741;    /* slightly lighter dark when selected */\n"
 "    selection-color: white;\n"
-"    border: 1px solid"
-                        " #444;                 /* subtle dark border */\n"
+"    border:"
+                        " 1px solid #444;                 /* subtle dark border */\n"
 "    padding: 5px;\n"
 "    outline: 0;\n"
 "    border-radius: 5px;\n"
@@ -1437,8 +1452,8 @@ class Ui_Form(object):
 "}\n"
 "\n"
 "QComboBox QAbstractItemView QScrollBar::add-page:vertical,\n"
-"QComboBox QAbstractItemView "
-                        "QScrollBar::sub-page:vertical {\n"
+"QComboBox QAbstrac"
+                        "tItemView QScrollBar::sub-page:vertical {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -1636,21 +1651,37 @@ class Ui_Form(object):
         self.phTxCh.setGeometry(QRect(210, 101, 77, 22))
         self.btnGetStatus = QPushButton(self.groupBox)
         self.btnGetStatus.setObjectName(u"btnGetStatus")
-        self.btnGetStatus.setGeometry(QRect(976, 160, 101, 25))
+        self.btnGetStatus.setGeometry(QRect(976, 157, 101, 25))
         self.btnGetStatus.setMaximumSize(QSize(16777215, 25))
         font4 = QFont()
         self.btnGetStatus.setFont(font4)
+        self.groupBox_4 = QGroupBox(self.groupBox)
+        self.groupBox_4.setObjectName(u"groupBox_4")
+        self.groupBox_4.setGeometry(QRect(758, 381, 114, 54))
+        self.groupBox_4.setStyleSheet(u"QLabel {\n"
+"	font: 12pt \"Segoe UI\";\n"
+"}")
+        self.ontime = QLabel(self.groupBox_4)
+        self.ontime.setObjectName(u"ontime")
+        self.ontime.setGeometry(QRect(9, 24, 95, 21))
+        font5 = QFont()
+        font5.setFamilies([u"Segoe UI"])
+        font5.setPointSize(12)
+        font5.setBold(False)
+        font5.setItalic(False)
+        self.ontime.setFont(font5)
+        self.ontime.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_71 = QLabel(Form)
         self.label_71.setObjectName(u"label_71")
         self.label_71.setGeometry(QRect(20, 20, 80, 41))
         self.label_71.setFont(font1)
-        self.label_71.setPixmap(QPixmap(u":/resources/amp-icon.png"))
+        self.label_71.setPixmap(QPixmap(u":/newPrefix/resources/amp-icon.png"))
         self.label_71.setScaledContents(True)
         self.label_72 = QLabel(Form)
         self.label_72.setObjectName(u"label_72")
         self.label_72.setGeometry(QRect(1020, 20, 75, 47))
         self.label_72.setFont(font1)
-        self.label_72.setPixmap(QPixmap(u":/resources/falconx-icon.png"))
+        self.label_72.setPixmap(QPixmap(u":/newPrefix/resources/falconx-icon.png"))
         self.label_72.setScaledContents(True)
 
         self.retranslateUi(Form)
@@ -1850,6 +1881,8 @@ class Ui_Form(object):
         self.current.setText(QCoreApplication.translate("Form", u".....", None))
         self.v48M1.setText(QCoreApplication.translate("Form", u".....", None))
         self.v48M2.setText(QCoreApplication.translate("Form", u".....", None))
+        self.label_174.setText(QCoreApplication.translate("Form", u"45V Mon2 :", None))
+        self.v45Mon2.setText(QCoreApplication.translate("Form", u".....", None))
         self.radar_groupbox_32.setTitle(QCoreApplication.translate("Form", u"CH CTLS", None))
         self.chId.setItemText(0, QCoreApplication.translate("Form", u"1", None))
         self.chId.setItemText(1, QCoreApplication.translate("Form", u"2", None))
@@ -2002,6 +2035,8 @@ class Ui_Form(object):
 
         self.phTxCh.setCurrentText(QCoreApplication.translate("Form", u"0", None))
         self.btnGetStatus.setText(QCoreApplication.translate("Form", u"Get Status", None))
+        self.groupBox_4.setTitle(QCoreApplication.translate("Form", u"ON TIME", None))
+        self.ontime.setText(QCoreApplication.translate("Form", u"..........", None))
         self.label_71.setText("")
         self.label_72.setText("")
     # retranslateUi

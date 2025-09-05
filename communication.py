@@ -223,6 +223,7 @@ class Communication(QObject):
         v5Mon1 = data[21:23]
         v5Mon2 = data[23:25]
         v45Mon2 = data[25:27]
+        onTime = data[27:31]
 
         self.updateField(tempLeft1, self.ui.leftTemp1)
         self.updateField(tempRight1, self.ui.rightTemp1)
@@ -236,6 +237,7 @@ class Communication(QObject):
         self.updateField(v5Mon1, self.ui.v5Mon1, suffix="V")
         self.updateField(v5Mon2, self.ui.v5Mon2, suffix="V")
         self.updateField(v45Mon2, self.ui.v45Mon, suffix="V")
+        self.convertOnTime(onTime)
           
         self.updateIcons(fpRf, [
             self.ui.fpRl1, self.ui.fpRl2, self.ui.fpRl3, self.ui.fpRl4,
@@ -265,6 +267,14 @@ class Communication(QObject):
         # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
         # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
         label_field.setText(f"{combined / 100:.2f} {suffix}")
+
+    def convertOnTime(self, packet_bytes):
+        total_seconds = int.from_bytes(packet_bytes, "little") * 60
+        days, remainder = divmod(total_seconds, 86400)   # 24*60*60
+        hours, remainder = divmod(remainder, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        self.ui.ontime.setText(f"{days}d {hours}h {minutes}m")
+
 
     def sendControl(self, data):
         if self.serial_port and self.serial_port.is_open:
