@@ -8,7 +8,7 @@ from PySide6.QtWidgets import *
 
 from communication import Communication
 # from controls import Controls
-import rc_resources
+import resources_rc
 
 
 class TrmRNDController(QWidget):  # Wrapper class

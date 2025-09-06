@@ -5,6 +5,7 @@ import serial
 import time
 import serial.tools.list_ports
 from datetime import datetime
+import resources_rc
 
 
 class SerialReader(QObject):
@@ -114,7 +115,7 @@ class Communication(QObject):
         self.reader_thread = None
 
     def on_data_received(self, data):
-        if data[0] == 0xAA and len(data) > 27: 
+        if data[0] == 0xAA and len(data) > 32: 
             self.consolePrint(data, length=len(data))
             self.data_received_signal.emit(data)
         else:
@@ -175,7 +176,7 @@ class Communication(QObject):
 
     def getStatus(self):
         data = [ 0x33, 0x01, 0x00, 0x00, 0x00, 0xBB ]
-        # data = [0xAA, 0x01, 0x02, 0xBC, 0x0A, 0x23, 0x01, 0x56, 0x04, 0x89, 0x07, 0xF0, 0x00, 0xA2, 0x01, 0xB3, 0x02, 0xC4, 0x03, 0xD5, 0x04, 0xE6, 0x05, 0xF7, 0x06, 0xF8, 0x07, 0xBB  ]
+        # data = [0xAA, 0x01, 0x02, 0xBC, 0x0A, 0x23, 0x01, 0x56, 0x04, 0x89, 0x07, 0xF0, 0x00, 0xA2, 0x01, 0xB3, 0x02, 0xC4, 0x03, 0xD5, 0x04, 0xE6, 0x05, 0xF7, 0x06, 0xF8, 0x07, 0xF9, 0x08, 0x01, 0x00, 0x00, 0x00, 0xBB  ]
 
         data_bytes = bytes(data)
         self.sendControl(data_bytes)
@@ -188,7 +189,7 @@ class Communication(QObject):
         return byte_blk_Sw
     
     def set_all_icons_off(self):
-        off_icon = QPixmap(u":/resources/Off.png")
+        off_icon = QPixmap(u":/newPrefix/resources/Off.png")
         for label in [
             self.ui.fpLf1, self.ui.fpLf2, self.ui.fpLf3, self.ui.fpLf4,
             self.ui.fpLf5, self.ui.fpLf6, self.ui.fpLf7, self.ui.fpLf8,
@@ -200,7 +201,7 @@ class Communication(QObject):
         for label in [
             self.ui.leftTemp1, self.ui.rightTemp1, self.ui.leftTemp2,
             self.ui.rightTemp2, self.ui.psTemp, self.ui.fpgaTemp, self.ui.current,
-            self.ui.v48M1, self.ui.v48M2, self.ui.v5Mon1, self.ui.v5Mon2, self.ui.v45Mon
+            self.ui.v48M1, self.ui.v48M2, self.ui.v5Mon1, self.ui.v5Mon2, self.ui.v45Mon, self.ui.v45Mon2, self.ui.ontime
         ]:
             label.setText(".....")
         self.ui.textbox.clear()
@@ -222,8 +223,9 @@ class Communication(QObject):
         v48Mon2 = data[19:21]
         v5Mon1 = data[21:23]
         v5Mon2 = data[23:25]
-        v45Mon2 = data[25:27]
-        onTime = data[27:31]
+        v45Mon1 = data[25:27]
+        v45Mon2 = data[27:29]
+        onTime = data[29:33]
 
         self.updateField(tempLeft1, self.ui.leftTemp1)
         self.updateField(tempRight1, self.ui.rightTemp1)
@@ -236,7 +238,8 @@ class Communication(QObject):
         self.updateField(v48Mon2, self.ui.v48M2, suffix="V")
         self.updateField(v5Mon1, self.ui.v5Mon1, suffix="V")
         self.updateField(v5Mon2, self.ui.v5Mon2, suffix="V")
-        self.updateField(v45Mon2, self.ui.v45Mon, suffix="V")
+        self.updateField(v45Mon1, self.ui.v45Mon, suffix="V")
+        self.updateField(v45Mon2, self.ui.v45Mon2, suffix="V")
         self.convertOnTime(onTime)
           
         self.updateIcons(fpRf, [
@@ -256,8 +259,12 @@ class Communication(QObject):
             self.update_status(label, status)
 
     def update_status(self, label, status):
-        icon_path = u":/resources/Ok.png" if status else u":/resources/Error.png"
-        label.setPixmap(QPixmap(icon_path))
+        icon_path = u":/newPrefix/resources/Ok.png" if status else u":/newPrefix/resources/Error.png"
+        pixmap = QPixmap(icon_path)
+        if pixmap.isNull():
+            print(f"Icon not found: {icon_path}")
+        else:
+            label.setPixmap(pixmap)
 
     def updateField(self, temps, label_field, suffix="°C"):
         first_byte = temps[0]                # 0xAB
@@ -266,7 +273,8 @@ class Communication(QObject):
         combined = (first_byte << 4) | second_byte_4bits
         # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
         # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
-        label_field.setText(f"{combined / 100:.2f} {suffix}")
+        val = (combined * 5.0) / 4096.0
+        label_field.setText(f"{val:.2f} {suffix}")
 
     def convertOnTime(self, packet_bytes):
         total_seconds = int.from_bytes(packet_bytes, "little") * 60

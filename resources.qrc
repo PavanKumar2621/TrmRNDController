@@ -1,5 +1,33 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>resources/abort-156539_1280.webp</file>
+    <file>resources/amp-icon.png</file>
+    <file>resources/arrow.png</file>
+    <file>resources/cancel-47588_1280.png</file>
+    <file>resources/con_off.png</file>
+    <file>resources/con_on.png</file>
+    <file>resources/Error.png</file>
+    <file>resources/error-24842_640.webp</file>
+    <file>resources/error-803716_640.webp</file>
+    <file>resources/Failure.png</file>
+    <file>resources/falconx-icon.png</file>
+    <file>resources/highres_on.png</file>
+    <file>resources/hires_off.png</file>
+    <file>resources/Null.png</file>
+    <file>resources/Off.png</file>
+    <file>resources/off-button.png</file>
+    <file>resources/Ok.png</file>
+    <file>resources/on-button.png</file>
+    <file>resources/Success.png</file>
+    <file>resources/switch (1).png</file>
+    <file>resources/switch (3).png</file>
+    <file>resources/switch (4).png</file>
+    <file>resources/switch.png</file>
+    <file>resources/switch-off1.png</file>
+    <file>resources/switch-on1.png</file>
+    <file>resources/v1.png</file>
+    <file>resources/v2.png</file>
+    <file>resources/v3.png</file>
     <file>resources/amp-icon.png</file>
     <file>resources/falconx-icon.png</file>
     <file>resources/arrow.png</file>
