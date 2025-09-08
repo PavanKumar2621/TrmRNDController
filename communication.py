@@ -274,6 +274,10 @@ class Communication(QObject):
         # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
         # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
         val = (combined * 5.0) / 4096.0
+        if label_field == self.ui.v45Mon:
+            val = ((combined * 5.0) / 4096.0) * 6
+        else:
+            val = (combined * 5.0) / 4096.0
         label_field.setText(f"{val:.2f} {suffix}")
 
     def convertOnTime(self, packet_bytes):

@@ -68,7 +68,7 @@ background-color: rgb(14, 20, 27);
 </string>
    </property>
    <property name="text">
-    <string>8 CHANNEL TRM RND CONTROLLER</string>
+    <string>TRMN CONTROLLER</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1916,7 +1916,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1940,7 +1940,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1964,7 +1964,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -1988,7 +1988,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2012,7 +2012,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2054,7 +2054,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2078,7 +2078,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2120,7 +2120,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2572,7 +2572,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2596,7 +2596,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2620,7 +2620,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2644,7 +2644,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2668,7 +2668,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2692,7 +2692,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2716,7 +2716,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2740,7 +2740,7 @@ QPushButton:pressed {
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/Off.png</pixmap>
+       <pixmap resource="resources.qrc">:/newPrefix/resources/Off.png</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -2994,9 +2994,9 @@ QPushButton:pressed {
     <widget class="QLabel" name="label_165">
      <property name="geometry">
       <rect>
-       <x>31</x>
+       <x>10</x>
        <y>25</y>
-       <width>77</width>
+       <width>91</width>
        <height>21</height>
       </rect>
      </property>
@@ -3006,7 +3006,7 @@ QPushButton:pressed {
       </font>
      </property>
      <property name="text">
-      <string>Current Mon :</string>
+      <string>Input Cur Mon :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -3037,7 +3037,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>34</x>
-       <y>162</y>
+       <y>160</y>
        <width>58</width>
        <height>16</height>
       </rect>
@@ -3078,9 +3078,9 @@ QPushButton:pressed {
     <widget class="QLabel" name="label_172">
      <property name="geometry">
       <rect>
-       <x>34</x>
-       <y>195</y>
-       <width>58</width>
+       <x>11</x>
+       <y>192</y>
+       <width>84</width>
        <height>16</height>
       </rect>
      </property>
@@ -3090,7 +3090,7 @@ QPushButton:pressed {
       </font>
      </property>
      <property name="text">
-      <string>45V Mon :</string>
+      <string>Input Volt Mon :</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -3208,7 +3208,7 @@ QPushButton:pressed {
      <property name="geometry">
       <rect>
        <x>34</x>
-       <y>226</y>
+       <y>224</y>
        <width>60</width>
        <height>16</height>
       </rect>
@@ -4272,7 +4272,7 @@ color: white;
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/amp-icon.png</pixmap>
+    <pixmap resource="resources.qrc">:/newPrefix/resources/amp-icon.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -4296,7 +4296,7 @@ color: white;
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap resource="C:/Users/HP/TrmRNDController/resources.qrc">:/newPrefix/resources/falconx-icon.png</pixmap>
+    <pixmap resource="resources.qrc">:/newPrefix/resources/falconx-icon.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -4304,7 +4304,7 @@ color: white;
   </widget>
  </widget>
  <resources>
-  <include location="C:/Users/HP/TrmRNDController/resources.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>
