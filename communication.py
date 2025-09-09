@@ -84,6 +84,7 @@ class Communication(QObject):
 
     def toggleConnection(self, com_port, baud_rate):
         if self.serial_port and self.serial_port.is_open:
+            self.stop_reader()
             self.serial_port.close()
             print("Serial port closed.")
             self.ui.connect.setText("Connect")
@@ -176,8 +177,7 @@ class Communication(QObject):
 
     def getStatus(self):
         data = [ 0x33, 0x01, 0x00, 0x00, 0x00, 0xBB ]
-        # data = [0xAA, 0x01, 0x02, 0xBC, 0x0A, 0x23, 0x01, 0x56, 0x04, 0x89, 0x07, 0xF0, 0x00, 0xA2, 0x01, 0xB3, 0x02, 0xC4, 0x03, 0xD5, 0x04, 0xE6, 0x05, 0xF7, 0x06, 0xF8, 0x07, 0xF9, 0x08, 0x01, 0x00, 0x00, 0x00, 0xBB  ]
-
+        # data = [0xAA, 0x00, 0x00, 0xFA, 0x01, 0xA8, 0x01, 0x48, 0x04, 0xE2, 0x03, 0x8A, 0x01, 0xD6, 0x03, 0x1E, 0x00, 0xC0, 0x02, 0xB6, 0x08, 0x00, 0x00, 0x36, 0x09, 0xF2, 0x0C, 0xC5, 0x08, 0xA7, 0x04, 0x00, 0x00, 0xBB]
         data_bytes = bytes(data)
         self.sendControl(data_bytes)
       
@@ -201,10 +201,11 @@ class Communication(QObject):
         for label in [
             self.ui.leftTemp1, self.ui.rightTemp1, self.ui.leftTemp2,
             self.ui.rightTemp2, self.ui.psTemp, self.ui.fpgaTemp, self.ui.current,
-            self.ui.v48M1, self.ui.v48M2, self.ui.v5Mon1, self.ui.v5Mon2, self.ui.v45Mon, self.ui.v45Mon2, self.ui.ontime
+            self.ui.v48M1, self.ui.v48M2, self.ui.v5Mon1, self.ui.v5Mon2, self.ui.v45Mon, self.ui.v45Mon2
         ]:
             label.setText(".....")
         self.ui.textbox.clear()
+        self.ui.ontime.setText("..........")
     
     def handle_received_data(self, data):
         print(f"Processing received data: {data}")
@@ -267,13 +268,13 @@ class Communication(QObject):
             label.setPixmap(pixmap)
 
     def updateField(self, temps, label_field, suffix="°C"):
-        first_byte = temps[0]                # 0xAB
-        second_byte_4bits = temps[1] & 0x0F  # 0x3C & 0x0F = 0x0C
-
-        combined = (first_byte << 4) | second_byte_4bits
+        # first_byte = temps[0]                # 0xAB
+        # second_byte_4bits = temps[1] & 0x0F  # 0x3C & 0x0F = 0x0C
+        # combined = (first_byte << 4) | second_byte_4bits
         # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
         # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
-        val = (combined * 5.0) / 4096.0
+
+        combined = int.from_bytes(temps, "little")
         if label_field == self.ui.v45Mon:
             val = ((combined * 5.0) / 4096.0) * 6
         else:
@@ -300,6 +301,6 @@ class Communication(QObject):
     def consolePrint(self, message, length=0):
         timestamp = datetime.now().strftime("%H:%M:%S")
         hex_message = message.hex("-").upper()
-        sym = '<-'if length == 28 else '->'  
+        sym = '<-'if length > 32 else '->'  
         formatted_message = f"{timestamp} {sym} {hex_message}"
         self.ui.textbox.append(formatted_message)

@@ -68,7 +68,7 @@ background-color: rgb(14, 20, 27);
 </string>
    </property>
    <property name="text">
-    <string>TRMN CONTROLLER</string>
+    <string>TRMM CONTROLLER</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignmentFlag::AlignCenter</set>

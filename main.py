@@ -10,8 +10,9 @@ if __name__ == "__main__":
     sys.exit(app.exec())
 
 
-# from PIL import Image
+# # from PIL import Image
 
-# img = Image.open("IMG.png")
-# # Save as ICO with multiple sizes
-# img.save("IMG.ico", format="ICO", sizes=[(256, 256)]) 
+# # img = Image.open("IMG.png")
+# # # Save as ICO with multiple sizes
+# # img.save("IMG.ico", format="ICO", sizes=[(256, 256)]) 
+

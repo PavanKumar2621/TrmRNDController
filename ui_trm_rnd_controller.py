@@ -36,13 +36,7 @@ class TrmRNDController(QWidget):  # Wrapper class
 
         # Send Control
         self.ui.btnClear.clicked.connect(lambda: self.ui.textbox.clear())
-        # self.ui.btnClear.clicked.connect(self.Clear)
         self.ui.btnRND.clicked.connect(lambda: self.communication.controlsRND())
-
-#     def Clear(self):
-#         full_packet = bytes.fromhex("b1 b1 09 5a 00 00 00 e1")
-#         board_on_time = full_packet[3:7]
-#         self.communication.convertOnTime(board_on_time)
         
     def changeBlkSwAllControls(self, index):
         for i in range(1, 9):
@@ -51,6 +45,13 @@ class TrmRNDController(QWidget):  # Wrapper class
     def changeTrCTCLAllControls(self, index):
         for i in range(1, 9):
             getattr(self.ui, f'trCTCL{i}').setCurrentIndex(index)
+
+    def closeEvent(self, event):
+        if hasattr(self, 'communication') and self.communication:
+            self.communication.stop_reader()
+            if self.communication.serial_port and self.communication.serial_port.is_open:
+                self.communication.serial_port.close()
+        event.accept()        
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -1691,7 +1692,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"TRM RND CONTROLLER", None))
-        self.label_14.setText(QCoreApplication.translate("Form", u"TRMN CONTROLLER", None))
+        self.label_14.setText(QCoreApplication.translate("Form", u"TRMM CONTROLLER", None))
         self.groupBox.setTitle("")
         self.radar_groupbox_12.setTitle(QCoreApplication.translate("Form", u"COMMUNICTION", None))
         self.comPort.setItemText(0, QCoreApplication.translate("Form", u"COM1", None))
