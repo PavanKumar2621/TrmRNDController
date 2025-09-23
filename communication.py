@@ -116,7 +116,7 @@ class Communication(QObject):
         self.reader_thread = None
 
     def on_data_received(self, data):
-        if data[0] == 0xAA and len(data) > 32: 
+        if data[0] == 0xAA and len(data) > 35: 
             self.consolePrint(data, length=len(data))
             self.data_received_signal.emit(data)
         else:
@@ -177,7 +177,9 @@ class Communication(QObject):
 
     def getStatus(self):
         data = [ 0x33, 0x01, 0x00, 0x00, 0x00, 0xBB ]
-        # data = [0xAA, 0x00, 0x00, 0xFA, 0x01, 0xA8, 0x01, 0x48, 0x04, 0xE2, 0x03, 0x8A, 0x01, 0xD6, 0x03, 0x1E, 0x00, 0xC0, 0x02, 0xB6, 0x08, 0x00, 0x00, 0x36, 0x09, 0xF2, 0x0C, 0xC5, 0x08, 0xA7, 0x04, 0x00, 0x00, 0xBB]
+        # data = [0xAA, 0x03, 0x00, 0xAD, 0x3C, 0xA8, 0x01, 0x48, 0x04, 0xE2,
+        #         0x03, 0x8A, 0x01, 0xD6, 0x03, 0x1E, 0x00, 0xC0, 0x02, 0xB6,
+        #         0x08, 0x00, 0x00, 0x36, 0x09, 0xF2, 0x0C, 0xC5, 0x08, 0x27, 0x29, 0x06, 0x00, 0x00, 0x00, 0x00, 0xBB]
         data_bytes = bytes(data)
         self.sendControl(data_bytes)
       
@@ -208,7 +210,9 @@ class Communication(QObject):
         self.ui.ontime.setText("..........")
     
     def handle_received_data(self, data):
-        print(f"Processing received data: {data}")
+        if len(data) < 35:
+            print("Received data too short:", data)
+            return
         self._should_process = False
 
         fpRf = data[1]
@@ -226,7 +230,7 @@ class Communication(QObject):
         v5Mon2 = data[23:25]
         v45Mon1 = data[25:27]
         v45Mon2 = data[27:29]
-        onTime = data[29:33]
+        onTime = data[29:35]
 
         self.updateField(tempLeft1, self.ui.leftTemp1)
         self.updateField(tempRight1, self.ui.rightTemp1)
@@ -243,7 +247,7 @@ class Communication(QObject):
         self.updateField(v45Mon2, self.ui.v45Mon2, suffix="V")
         self.convertOnTime(onTime)
           
-        self.updateIcons(fpRf, [
+        self.updateIcons(fpRf, [    
             self.ui.fpRl1, self.ui.fpRl2, self.ui.fpRl3, self.ui.fpRl4,
             self.ui.fpRl5, self.ui.fpRl6, self.ui.fpRl7, self.ui.fpRl8,
         ])
@@ -274,7 +278,12 @@ class Communication(QObject):
         # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
         # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
 
-        combined = int.from_bytes(temps, "little")
+        # combined = int.from_bytes(temps, "little")
+        # Extract 6 bits from LSB of each byte
+
+        b0 = temps[0] & 0x3F  
+        b1 = temps[1] & 0x3F
+        combined = (b1 << 6) | b0
         if label_field == self.ui.v45Mon:
             val = ((combined * 5.0) / 4096.0) * 6
         else:
@@ -282,7 +291,23 @@ class Communication(QObject):
         label_field.setText(f"{val:.2f} {suffix}")
 
     def convertOnTime(self, packet_bytes):
-        total_seconds = int.from_bytes(packet_bytes, "little") * 60
+        b0 = packet_bytes[0] & 0x3F
+        b1 = packet_bytes[1] & 0x3F
+        b2 = packet_bytes[2] & 0x3F
+        b3 = packet_bytes[3] & 0x3F
+        b4 = packet_bytes[4] & 0x3F
+        b5 = packet_bytes[5] & 0x03  # Only 2 bits from last byte
+
+        # Combine as little endian: b0 is lowest bits, b5 is highest
+        combined = (
+            (b5 << 30) |
+            (b4 << 24) |
+            (b3 << 18) |
+            (b2 << 12) |
+            (b1 << 6)  |
+            b0
+        )
+        total_seconds = combined * 60
         days, remainder = divmod(total_seconds, 86400)   # 24*60*60
         hours, remainder = divmod(remainder, 3600)
         minutes, seconds = divmod(remainder, 60)
@@ -291,9 +316,16 @@ class Communication(QObject):
 
     def sendControl(self, data):
         if self.serial_port and self.serial_port.is_open:
-            self.serial_port.write(data)
-            self.consolePrint(data)
-            print("Control data sent ", data)
+            try:
+                self.serial_port.write(data)
+                self.consolePrint(data)
+                print("Control data sent ", data)
+            except serial.SerialTimeoutException as e:
+                print(f"Serial write timeout: {e}")
+                QMessageBox.warning(None, "Serial Error", f"Write timeout: {e}")
+            except Exception as e:
+                print(f"Serial write error: {e}")
+                QMessageBox.warning(None, "Serial Error", str(e))
         else:
             print("Serial port is not open")
             QMessageBox.warning(None, "Error", "Serial port is not open.")

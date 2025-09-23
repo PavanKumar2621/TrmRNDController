@@ -1691,7 +1691,7 @@ class Ui_Form(object):
     # setupUi
 
     def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"TRM RND CONTROLLER", None))
+        Form.setWindowTitle(QCoreApplication.translate("Form", u"TRMM CONTROLLER", None))
         self.label_14.setText(QCoreApplication.translate("Form", u"TRMM CONTROLLER", None))
         self.groupBox.setTitle("")
         self.radar_groupbox_12.setTitle(QCoreApplication.translate("Form", u"COMMUNICTION", None))
