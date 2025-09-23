@@ -1,5 +1,4 @@
-<img width="1109" height="756" alt="image" src="https://github.com/user-attachments/assets/84b20ce8-a086-48c5-98a3-4549a188fbe8" />
-
+![alt text](image.png)
 
 
 
