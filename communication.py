@@ -151,6 +151,7 @@ class Communication(QObject):
         rightt_Prt = int(self.ui.righttPrt.isChecked())
         ch_Id = self.ui.chId.currentIndex() + 1  
         att = self.ui.attTxCh.currentIndex()
+        att_6bit = int('{:06b}'.format(att)[::-1], 2) # For reversing the bits and padding 0 for creating 6-bit value
         phase = self.ui.phTxCh.currentIndex()
 
         # Pack 8 switch states into a single byte (bitwise)
@@ -169,7 +170,7 @@ class Communication(QObject):
             (left_Prt & 0b1111)
         )
 
-        data = [ 0xAA, 0x00, ch_Id, 0x00, blk_sw, tr_ctcl, bit_data_02, bit_data_04, att, phase, 0xBB ]
+        data = [ 0xAA, 0x00, ch_Id, 0x00, blk_sw, tr_ctcl, bit_data_02, bit_data_04, att_6bit, phase, 0xBB ]
 
         data_bytes = bytes(data)
         # print("Control data:", data_bytes.hex("-").upper())
