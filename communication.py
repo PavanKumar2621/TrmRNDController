@@ -143,10 +143,19 @@ class Communication(QObject):
         # QMessageBox.warning(None, "Serial Error", error)
     
     def controlsRND(self):
-        rblk_CTL = self.ui.rblkCTL.currentIndex()
-        lblk_CTL = self.ui.lblkCTL.currentIndex()
-        bite_CNT = self.ui.biteCNT.currentIndex()
-        swlR_CTL = self.ui.swlRCTL.currentIndex()
+        rb1 = int(self.ui.rblkCTL1_4.isChecked())
+        rb2 = int(self.ui.rblkCTL5_8.isChecked())
+        lb1 = int(self.ui.lblkCTL1_4.isChecked())
+        lb2 = int(self.ui.lblkCTL5_8.isChecked())
+        bt1 = int(self.ui.biteCNT1_4.isChecked())
+        bt2 = int(self.ui.biteCNT5_8.isChecked())
+        sw1 = int(self.ui.swlRCTL1_4.isChecked())
+        sw2 = int(self.ui.swlRCTL5_8.isChecked())
+
+        rblk_CTL = ( rb2 <<1) | rb1
+        lblk_CTL = (lb2 <<1) |lb1
+        bite_CNT =(bt2 <<1) |bt1
+        swlR_CTL =(sw2 <<1) |sw1
         left_Prt = int(self.ui.leftPrt.isChecked())
         rightt_Prt = int(self.ui.righttPrt.isChecked())
         ch_Id = self.ui.chId.currentIndex() + 1  

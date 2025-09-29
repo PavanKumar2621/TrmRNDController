@@ -8,3 +8,10 @@ if __name__ == "__main__":
     trmController = TrmRNDController()
     trmController.show()
     sys.exit(app.exec())
+
+# rb2 =1
+# rb1 =1
+
+# rblk_CTL =( rb2 <<1) | rb1
+
+# print(rblk_CTL)

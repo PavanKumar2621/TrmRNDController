@@ -37,6 +37,23 @@ class TrmRNDController(QWidget):  # Wrapper class
         # Send Control
         self.ui.btnClear.clicked.connect(lambda: self.ui.textbox.clear())
         self.ui.btnRND.clicked.connect(lambda: self.communication.controlsRND())
+
+        # Change Theme
+        self.checkboxes = [
+            self.ui.rblkCTL1_4, self.ui.rblkCTL5_8,
+            self.ui.lblkCTL1_4, self.ui.lblkCTL5_8,
+            self.ui.biteCNT1_4, self.ui.biteCNT5_8,
+            self.ui.swlRCTL1_4, self.ui.swlRCTL5_8,
+            self.ui.righttPrt, self.ui.leftPrt
+        ]
+
+        for cb in self.checkboxes:
+            cb.stateChanged.connect(lambda state, c=cb: self.update_checkbox_style(c, state))
+            self.update_checkbox_style(cb, cb.checkState())
+            
+    def update_checkbox_style(self, checkbox, state):
+        checkbox.setStyleSheet("background-color: #2a2f3b;" if state == 2 else "background-color: #0e141b;")
+
         
     def changeBlkSwAllControls(self, index):
         for i in range(1, 9):
@@ -743,48 +760,53 @@ class Ui_Form(object):
 "}")
         self.label_188 = QLabel(self.radar_groupbox_31)
         self.label_188.setObjectName(u"label_188")
-        self.label_188.setGeometry(QRect(18, 65, 51, 26))
+        self.label_188.setGeometry(QRect(15, 73, 51, 26))
         self.label_188.setFont(font2)
         self.label_190 = QLabel(self.radar_groupbox_31)
         self.label_190.setObjectName(u"label_190")
-        self.label_190.setGeometry(QRect(18, 108, 51, 26))
+        self.label_190.setGeometry(QRect(15, 116, 51, 26))
         self.label_190.setFont(font2)
         self.label_191 = QLabel(self.radar_groupbox_31)
         self.label_191.setObjectName(u"label_191")
-        self.label_191.setGeometry(QRect(15, 151, 61, 26))
+        self.label_191.setGeometry(QRect(15, 159, 56, 26))
         self.label_191.setFont(font2)
         self.label_192 = QLabel(self.radar_groupbox_31)
         self.label_192.setObjectName(u"label_192")
-        self.label_192.setGeometry(QRect(15, 25, 51, 26))
+        self.label_192.setGeometry(QRect(15, 33, 51, 26))
         self.label_192.setFont(font2)
-        self.rblkCTL = QComboBox(self.radar_groupbox_31)
-        self.rblkCTL.addItem("")
-        self.rblkCTL.addItem("")
-        self.rblkCTL.addItem("")
-        self.rblkCTL.addItem("")
-        self.rblkCTL.setObjectName(u"rblkCTL")
-        self.rblkCTL.setGeometry(QRect(83, 67, 62, 22))
-        self.biteCNT = QComboBox(self.radar_groupbox_31)
-        self.biteCNT.addItem("")
-        self.biteCNT.addItem("")
-        self.biteCNT.addItem("")
-        self.biteCNT.addItem("")
-        self.biteCNT.setObjectName(u"biteCNT")
-        self.biteCNT.setGeometry(QRect(83, 110, 62, 22))
-        self.swlRCTL = QComboBox(self.radar_groupbox_31)
-        self.swlRCTL.addItem("")
-        self.swlRCTL.addItem("")
-        self.swlRCTL.addItem("")
-        self.swlRCTL.addItem("")
-        self.swlRCTL.setObjectName(u"swlRCTL")
-        self.swlRCTL.setGeometry(QRect(83, 153, 62, 22))
-        self.lblkCTL = QComboBox(self.radar_groupbox_31)
-        self.lblkCTL.addItem("")
-        self.lblkCTL.addItem("")
-        self.lblkCTL.addItem("")
-        self.lblkCTL.addItem("")
-        self.lblkCTL.setObjectName(u"lblkCTL")
-        self.lblkCTL.setGeometry(QRect(83, 27, 62, 22))
+        self.lblkCTL5_8 = QCheckBox(self.radar_groupbox_31)
+        self.lblkCTL5_8.setObjectName(u"lblkCTL5_8")
+        self.lblkCTL5_8.setGeometry(QRect(130, 37, 17, 20))
+        self.lblkCTL1_4 = QCheckBox(self.radar_groupbox_31)
+        self.lblkCTL1_4.setObjectName(u"lblkCTL1_4")
+        self.lblkCTL1_4.setGeometry(QRect(90, 37, 17, 20))
+        self.lblkCTL1_4.setStyleSheet(u"")
+        self.rblkCTL5_8 = QCheckBox(self.radar_groupbox_31)
+        self.rblkCTL5_8.setObjectName(u"rblkCTL5_8")
+        self.rblkCTL5_8.setGeometry(QRect(130, 77, 17, 20))
+        self.rblkCTL1_4 = QCheckBox(self.radar_groupbox_31)
+        self.rblkCTL1_4.setObjectName(u"rblkCTL1_4")
+        self.rblkCTL1_4.setGeometry(QRect(90, 77, 17, 20))
+        self.biteCNT5_8 = QCheckBox(self.radar_groupbox_31)
+        self.biteCNT5_8.setObjectName(u"biteCNT5_8")
+        self.biteCNT5_8.setGeometry(QRect(130, 118, 17, 20))
+        self.biteCNT1_4 = QCheckBox(self.radar_groupbox_31)
+        self.biteCNT1_4.setObjectName(u"biteCNT1_4")
+        self.biteCNT1_4.setGeometry(QRect(90, 118, 17, 20))
+        self.swlRCTL1_4 = QCheckBox(self.radar_groupbox_31)
+        self.swlRCTL1_4.setObjectName(u"swlRCTL1_4")
+        self.swlRCTL1_4.setGeometry(QRect(90, 162, 17, 20))
+        self.swlRCTL5_8 = QCheckBox(self.radar_groupbox_31)
+        self.swlRCTL5_8.setObjectName(u"swlRCTL5_8")
+        self.swlRCTL5_8.setGeometry(QRect(130, 162, 17, 20))
+        self.label_193 = QLabel(self.radar_groupbox_31)
+        self.label_193.setObjectName(u"label_193")
+        self.label_193.setGeometry(QRect(84, 10, 29, 21))
+        self.label_193.setFont(font2)
+        self.label_194 = QLabel(self.radar_groupbox_31)
+        self.label_194.setObjectName(u"label_194")
+        self.label_194.setGeometry(QRect(125, 10, 29, 21))
+        self.label_194.setFont(font2)
         self.radar_groupbox_22 = QGroupBox(self.groupBox)
         self.radar_groupbox_22.setObjectName(u"radar_groupbox_22")
         self.radar_groupbox_22.setGeometry(QRect(10, 445, 861, 188))
@@ -1475,7 +1497,7 @@ class Ui_Form(object):
 "color: white;\n"
 "}\n"
 "QCheckBox{\n"
-"color: white;\n"
+"color: white;	\n"
 "}")
         self.chId = QComboBox(self.radar_groupbox_32)
         self.chId.addItem("")
@@ -1499,10 +1521,10 @@ class Ui_Form(object):
         self.label_69.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.leftPrt = QCheckBox(self.radar_groupbox_32)
         self.leftPrt.setObjectName(u"leftPrt")
-        self.leftPrt.setGeometry(QRect(30, 65, 76, 20))
+        self.leftPrt.setGeometry(QRect(30, 62, 17, 20))
         self.righttPrt = QCheckBox(self.radar_groupbox_32)
         self.righttPrt.setObjectName(u"righttPrt")
-        self.righttPrt.setGeometry(QRect(30, 105, 76, 20))
+        self.righttPrt.setGeometry(QRect(30, 101, 17, 20))
         self.btnRND = QPushButton(self.radar_groupbox_32)
         self.btnRND.setObjectName(u"btnRND")
         self.btnRND.setGeometry(QRect(120, 142, 91, 25))
@@ -1650,6 +1672,14 @@ class Ui_Form(object):
         self.phTxCh.addItem("")
         self.phTxCh.setObjectName(u"phTxCh")
         self.phTxCh.setGeometry(QRect(210, 101, 77, 22))
+        self.label_195 = QLabel(self.radar_groupbox_32)
+        self.label_195.setObjectName(u"label_195")
+        self.label_195.setGeometry(QRect(55, 60, 51, 21))
+        self.label_195.setFont(font2)
+        self.label_196 = QLabel(self.radar_groupbox_32)
+        self.label_196.setObjectName(u"label_196")
+        self.label_196.setGeometry(QRect(55, 100, 61, 21))
+        self.label_196.setFont(font2)
         self.btnGetStatus = QPushButton(self.groupBox)
         self.btnGetStatus.setObjectName(u"btnGetStatus")
         self.btnGetStatus.setGeometry(QRect(976, 157, 101, 25))
@@ -1801,26 +1831,16 @@ class Ui_Form(object):
         self.label_190.setText(QCoreApplication.translate("Form", u"BITE CNT", None))
         self.label_191.setText(QCoreApplication.translate("Form", u"SWL RCTL", None))
         self.label_192.setText(QCoreApplication.translate("Form", u"LBLK CTL", None))
-        self.rblkCTL.setItemText(0, QCoreApplication.translate("Form", u"0", None))
-        self.rblkCTL.setItemText(1, QCoreApplication.translate("Form", u"1", None))
-        self.rblkCTL.setItemText(2, QCoreApplication.translate("Form", u"2", None))
-        self.rblkCTL.setItemText(3, QCoreApplication.translate("Form", u"3", None))
-
-        self.biteCNT.setItemText(0, QCoreApplication.translate("Form", u"0", None))
-        self.biteCNT.setItemText(1, QCoreApplication.translate("Form", u"1", None))
-        self.biteCNT.setItemText(2, QCoreApplication.translate("Form", u"2", None))
-        self.biteCNT.setItemText(3, QCoreApplication.translate("Form", u"3", None))
-
-        self.swlRCTL.setItemText(0, QCoreApplication.translate("Form", u"0", None))
-        self.swlRCTL.setItemText(1, QCoreApplication.translate("Form", u"1", None))
-        self.swlRCTL.setItemText(2, QCoreApplication.translate("Form", u"2", None))
-        self.swlRCTL.setItemText(3, QCoreApplication.translate("Form", u"3", None))
-
-        self.lblkCTL.setItemText(0, QCoreApplication.translate("Form", u"0", None))
-        self.lblkCTL.setItemText(1, QCoreApplication.translate("Form", u"1", None))
-        self.lblkCTL.setItemText(2, QCoreApplication.translate("Form", u"2", None))
-        self.lblkCTL.setItemText(3, QCoreApplication.translate("Form", u"3", None))
-
+        self.lblkCTL5_8.setText("")
+        self.lblkCTL1_4.setText("")
+        self.rblkCTL5_8.setText("")
+        self.rblkCTL1_4.setText("")
+        self.biteCNT5_8.setText("")
+        self.biteCNT1_4.setText("")
+        self.swlRCTL1_4.setText("")
+        self.swlRCTL5_8.setText("")
+        self.label_193.setText(QCoreApplication.translate("Form", u"C1-4", None))
+        self.label_194.setText(QCoreApplication.translate("Form", u"C5-8", None))
         self.radar_groupbox_22.setTitle(QCoreApplication.translate("Form", u"HEALTH STATUS", None))
         self.radar_groupbox_23.setTitle(QCoreApplication.translate("Form", u"FORWARD POWER LEFT", None))
         self.label_129.setText(QCoreApplication.translate("Form", u"FP 3", None))
@@ -1898,8 +1918,8 @@ class Ui_Form(object):
 
         self.chId.setCurrentText(QCoreApplication.translate("Form", u"1", None))
         self.label_69.setText(QCoreApplication.translate("Form", u"CH ID", None))
-        self.leftPrt.setText(QCoreApplication.translate("Form", u"LEFT PRT", None))
-        self.righttPrt.setText(QCoreApplication.translate("Form", u"RIGHT PRT", None))
+        self.leftPrt.setText("")
+        self.righttPrt.setText("")
         self.btnRND.setText(QCoreApplication.translate("Form", u"Send", None))
         self.attTxCh.setItemText(0, QCoreApplication.translate("Form", u"0", None))
         self.attTxCh.setItemText(1, QCoreApplication.translate("Form", u"0.5", None))
@@ -2035,10 +2055,18 @@ class Ui_Form(object):
         self.phTxCh.setItemText(63, QCoreApplication.translate("Form", u"354.375", None))
 
         self.phTxCh.setCurrentText(QCoreApplication.translate("Form", u"0", None))
+        self.label_195.setText(QCoreApplication.translate("Form", u"LEFT PRT", None))
+        self.label_196.setText(QCoreApplication.translate("Form", u"RIGHT PRT", None))
         self.btnGetStatus.setText(QCoreApplication.translate("Form", u"Get Status", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("Form", u"ON TIME", None))
         self.ontime.setText(QCoreApplication.translate("Form", u"..........", None))
         self.label_71.setText("")
         self.label_72.setText("")
     # retranslateUi
+
+
+
+
+
+
 
