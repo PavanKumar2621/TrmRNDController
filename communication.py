@@ -5,7 +5,7 @@ import serial
 import time
 import serial.tools.list_ports
 from datetime import datetime
-import resources_rc
+import rc_resources
 
 
 class SerialReader(QObject):

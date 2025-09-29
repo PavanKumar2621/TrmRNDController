@@ -8,7 +8,7 @@ from PySide6.QtWidgets import *
 
 from communication import Communication
 # from controls import Controls
-import resources_rc
+import rc_resources
 
 
 class TrmRNDController(QWidget):  # Wrapper class
@@ -38,23 +38,6 @@ class TrmRNDController(QWidget):  # Wrapper class
         self.ui.btnClear.clicked.connect(lambda: self.ui.textbox.clear())
         self.ui.btnRND.clicked.connect(lambda: self.communication.controlsRND())
 
-        # Change Theme
-        self.checkboxes = [
-            self.ui.rblkCTL1_4, self.ui.rblkCTL5_8,
-            self.ui.lblkCTL1_4, self.ui.lblkCTL5_8,
-            self.ui.biteCNT1_4, self.ui.biteCNT5_8,
-            self.ui.swlRCTL1_4, self.ui.swlRCTL5_8,
-            self.ui.righttPrt, self.ui.leftPrt
-        ]
-
-        for cb in self.checkboxes:
-            cb.stateChanged.connect(lambda state, c=cb: self.update_checkbox_style(c, state))
-            self.update_checkbox_style(cb, cb.checkState())
-            
-    def update_checkbox_style(self, checkbox, state):
-        checkbox.setStyleSheet("background-color: #2a2f3b;" if state == 2 else "background-color: #0e141b;")
-
-        
     def changeBlkSwAllControls(self, index):
         for i in range(1, 9):
             getattr(self.ui, f'blkSw{i}').setCurrentIndex(index)
@@ -665,7 +648,7 @@ class Ui_Form(object):
         self.trCTCLAll.setGeometry(QRect(140, 160, 62, 22))
         self.radar_groupbox_31 = QGroupBox(self.groupBox_3)
         self.radar_groupbox_31.setObjectName(u"radar_groupbox_31")
-        self.radar_groupbox_31.setGeometry(QRect(571, 21, 161, 200))
+        self.radar_groupbox_31.setGeometry(QRect(569, 21, 164, 200))
         self.radar_groupbox_31.setFont(font)
         self.radar_groupbox_31.setStyleSheet(u"QComboBox {\n"
 "    color: white;\n"
@@ -755,57 +738,65 @@ class Ui_Form(object):
 "QLabel{\n"
 "color: white;\n"
 "}\n"
-"QCheckBox{\n"
-"color: white;\n"
-"}")
+"\n"
+"QCheckBox::indicator {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"    border: 1px solid #333;\n"
+"    background-color: white;   /* inside color when unchecked */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"	image: url(:/newPrefix/resources/tickmark.png);\n"
+"}\n"
+"")
         self.label_188 = QLabel(self.radar_groupbox_31)
         self.label_188.setObjectName(u"label_188")
-        self.label_188.setGeometry(QRect(15, 73, 51, 26))
+        self.label_188.setGeometry(QRect(12, 73, 51, 26))
         self.label_188.setFont(font2)
         self.label_190 = QLabel(self.radar_groupbox_31)
         self.label_190.setObjectName(u"label_190")
-        self.label_190.setGeometry(QRect(15, 116, 51, 26))
+        self.label_190.setGeometry(QRect(12, 116, 51, 26))
         self.label_190.setFont(font2)
         self.label_191 = QLabel(self.radar_groupbox_31)
         self.label_191.setObjectName(u"label_191")
-        self.label_191.setGeometry(QRect(15, 159, 56, 26))
+        self.label_191.setGeometry(QRect(12, 159, 56, 26))
         self.label_191.setFont(font2)
         self.label_192 = QLabel(self.radar_groupbox_31)
         self.label_192.setObjectName(u"label_192")
-        self.label_192.setGeometry(QRect(15, 33, 51, 26))
+        self.label_192.setGeometry(QRect(12, 33, 51, 26))
         self.label_192.setFont(font2)
         self.lblkCTL5_8 = QCheckBox(self.radar_groupbox_31)
         self.lblkCTL5_8.setObjectName(u"lblkCTL5_8")
-        self.lblkCTL5_8.setGeometry(QRect(130, 37, 17, 20))
+        self.lblkCTL5_8.setGeometry(QRect(127, 37, 17, 20))
         self.lblkCTL1_4 = QCheckBox(self.radar_groupbox_31)
         self.lblkCTL1_4.setObjectName(u"lblkCTL1_4")
-        self.lblkCTL1_4.setGeometry(QRect(90, 37, 17, 20))
-        self.lblkCTL1_4.setStyleSheet(u"")
+        self.lblkCTL1_4.setGeometry(QRect(85, 37, 17, 20))
         self.rblkCTL5_8 = QCheckBox(self.radar_groupbox_31)
         self.rblkCTL5_8.setObjectName(u"rblkCTL5_8")
-        self.rblkCTL5_8.setGeometry(QRect(130, 77, 17, 20))
+        self.rblkCTL5_8.setGeometry(QRect(127, 77, 17, 20))
         self.rblkCTL1_4 = QCheckBox(self.radar_groupbox_31)
         self.rblkCTL1_4.setObjectName(u"rblkCTL1_4")
-        self.rblkCTL1_4.setGeometry(QRect(90, 77, 17, 20))
+        self.rblkCTL1_4.setGeometry(QRect(85, 77, 17, 20))
         self.biteCNT5_8 = QCheckBox(self.radar_groupbox_31)
         self.biteCNT5_8.setObjectName(u"biteCNT5_8")
-        self.biteCNT5_8.setGeometry(QRect(130, 118, 17, 20))
+        self.biteCNT5_8.setGeometry(QRect(127, 118, 17, 20))
         self.biteCNT1_4 = QCheckBox(self.radar_groupbox_31)
         self.biteCNT1_4.setObjectName(u"biteCNT1_4")
-        self.biteCNT1_4.setGeometry(QRect(90, 118, 17, 20))
+        self.biteCNT1_4.setGeometry(QRect(85, 118, 17, 20))
         self.swlRCTL1_4 = QCheckBox(self.radar_groupbox_31)
         self.swlRCTL1_4.setObjectName(u"swlRCTL1_4")
-        self.swlRCTL1_4.setGeometry(QRect(90, 162, 17, 20))
+        self.swlRCTL1_4.setGeometry(QRect(85, 162, 17, 20))
         self.swlRCTL5_8 = QCheckBox(self.radar_groupbox_31)
         self.swlRCTL5_8.setObjectName(u"swlRCTL5_8")
-        self.swlRCTL5_8.setGeometry(QRect(130, 162, 17, 20))
+        self.swlRCTL5_8.setGeometry(QRect(127, 162, 17, 20))
         self.label_193 = QLabel(self.radar_groupbox_31)
         self.label_193.setObjectName(u"label_193")
-        self.label_193.setGeometry(QRect(84, 10, 29, 21))
+        self.label_193.setGeometry(QRect(79, 10, 33, 21))
         self.label_193.setFont(font2)
         self.label_194 = QLabel(self.radar_groupbox_31)
         self.label_194.setObjectName(u"label_194")
-        self.label_194.setGeometry(QRect(125, 10, 29, 21))
+        self.label_194.setGeometry(QRect(120, 10, 34, 21))
         self.label_194.setFont(font2)
         self.radar_groupbox_22 = QGroupBox(self.groupBox)
         self.radar_groupbox_22.setObjectName(u"radar_groupbox_22")
@@ -1496,9 +1487,17 @@ class Ui_Form(object):
 "QLabel{\n"
 "color: white;\n"
 "}\n"
-"QCheckBox{\n"
-"color: white;	\n"
-"}")
+"QCheckBox::indicator {\n"
+"    width: 16px;\n"
+"    height: 16px;\n"
+"    border: 1px solid #333;\n"
+"    background-color: white;   /* inside color when unchecked */\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"	image: url(:/newPrefix/resources/tickmark.png);\n"
+"}\n"
+"")
         self.chId = QComboBox(self.radar_groupbox_32)
         self.chId.addItem("")
         self.chId.addItem("")
@@ -1839,8 +1838,8 @@ class Ui_Form(object):
         self.biteCNT1_4.setText("")
         self.swlRCTL1_4.setText("")
         self.swlRCTL5_8.setText("")
-        self.label_193.setText(QCoreApplication.translate("Form", u"C1-4", None))
-        self.label_194.setText(QCoreApplication.translate("Form", u"C5-8", None))
+        self.label_193.setText(QCoreApplication.translate("Form", u"Ch1-4", None))
+        self.label_194.setText(QCoreApplication.translate("Form", u"Ch5-8", None))
         self.radar_groupbox_22.setTitle(QCoreApplication.translate("Form", u"HEALTH STATUS", None))
         self.radar_groupbox_23.setTitle(QCoreApplication.translate("Form", u"FORWARD POWER LEFT", None))
         self.label_129.setText(QCoreApplication.translate("Form", u"FP 3", None))
@@ -2063,10 +2062,4 @@ class Ui_Form(object):
         self.label_71.setText("")
         self.label_72.setText("")
     # retranslateUi
-
-
-
-
-
-
 

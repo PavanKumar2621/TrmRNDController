@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="newPrefix">
+    <file>resources/tickmark.png</file>
     <file>resources/abort-156539_1280.webp</file>
     <file>resources/amp-icon.png</file>
     <file>resources/arrow.png</file>
@@ -28,11 +29,5 @@
     <file>resources/v1.png</file>
     <file>resources/v2.png</file>
     <file>resources/v3.png</file>
-    <file>resources/amp-icon.png</file>
-    <file>resources/falconx-icon.png</file>
-    <file>resources/arrow.png</file>
-    <file>resources/Error.png</file>
-    <file>resources/Off.png</file>
-    <file>resources/Ok.png</file>
   </qresource>
 </RCC>
