@@ -256,7 +256,7 @@ QPushButton:pressed {
       </rect>
      </property>
      <property name="currentText">
-      <string>115200</string>
+      <string>9600</string>
      </property>
      <item>
       <property name="text">
@@ -1206,6 +1206,11 @@ color: white;
         <string>1</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
+       </property>
+      </item>
      </widget>
      <widget class="QComboBox" name="trCTCL5">
       <property name="geometry">
@@ -1224,6 +1229,11 @@ color: white;
       <item>
        <property name="text">
         <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
        </property>
       </item>
      </widget>
@@ -1246,6 +1256,11 @@ color: white;
         <string>1</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
+       </property>
+      </item>
      </widget>
      <widget class="QComboBox" name="trCTCL3">
       <property name="geometry">
@@ -1264,6 +1279,11 @@ color: white;
       <item>
        <property name="text">
         <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
        </property>
       </item>
      </widget>
@@ -1286,6 +1306,11 @@ color: white;
         <string>1</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
+       </property>
+      </item>
      </widget>
      <widget class="QComboBox" name="trCTCL6">
       <property name="geometry">
@@ -1304,6 +1329,11 @@ color: white;
       <item>
        <property name="text">
         <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
        </property>
       </item>
      </widget>
@@ -1326,6 +1356,11 @@ color: white;
         <string>1</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
+       </property>
+      </item>
      </widget>
      <widget class="QComboBox" name="trCTCL4">
       <property name="geometry">
@@ -1344,6 +1379,11 @@ color: white;
       <item>
        <property name="text">
         <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
        </property>
       </item>
      </widget>
@@ -1366,14 +1406,19 @@ color: white;
         <string>1</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>PRT</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QGroupBox" name="radar_groupbox_31">
      <property name="geometry">
       <rect>
-       <x>569</x>
+       <x>571</x>
        <y>21</y>
-       <width>164</width>
+       <width>161</width>
        <height>200</height>
       </rect>
      </property>
@@ -1485,11 +1530,11 @@ QCheckBox::indicator:checked {
      <property name="title">
       <string>CTLS</string>
      </property>
-     <widget class="QLabel" name="label_188">
+     <widget class="QLabel" name="label_189">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>73</y>
+        <x>18</x>
+        <y>65</y>
         <width>51</width>
         <height>26</height>
        </rect>
@@ -1503,11 +1548,11 @@ QCheckBox::indicator:checked {
        <string>RBLK CTL</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_190">
+     <widget class="QLabel" name="label_193">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>116</y>
+        <x>18</x>
+        <y>108</y>
         <width>51</width>
         <height>26</height>
        </rect>
@@ -1521,12 +1566,12 @@ QCheckBox::indicator:checked {
        <string>BITE CNT</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_191">
+     <widget class="QLabel" name="label_194">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>159</y>
-        <width>56</width>
+        <x>15</x>
+        <y>151</y>
+        <width>61</width>
         <height>26</height>
        </rect>
       </property>
@@ -1539,11 +1584,11 @@ QCheckBox::indicator:checked {
        <string>SWL RCTL</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_192">
+     <widget class="QLabel" name="label_197">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>33</y>
+        <x>15</x>
+        <y>25</y>
         <width>51</width>
         <height>26</height>
        </rect>
@@ -1557,145 +1602,125 @@ QCheckBox::indicator:checked {
        <string>LBLK CTL</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="lblkCTL5_8">
+     <widget class="QComboBox" name="rblkCNTL">
       <property name="geometry">
        <rect>
-        <x>127</x>
-        <y>37</y>
-        <width>17</width>
-        <height>20</height>
+        <x>83</x>
+        <y>67</y>
+        <width>62</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="text">
-       <string/>
-      </property>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QCheckBox" name="lblkCTL1_4">
+     <widget class="QComboBox" name="biteCNTL">
       <property name="geometry">
        <rect>
-        <x>85</x>
-        <y>37</y>
-        <width>17</width>
-        <height>20</height>
+        <x>83</x>
+        <y>110</y>
+        <width>62</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="text">
-       <string/>
-      </property>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QCheckBox" name="rblkCTL5_8">
+     <widget class="QComboBox" name="swlRCNTL">
       <property name="geometry">
        <rect>
-        <x>127</x>
-        <y>77</y>
-        <width>17</width>
-        <height>20</height>
+        <x>83</x>
+        <y>153</y>
+        <width>62</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="text">
-       <string/>
-      </property>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QCheckBox" name="rblkCTL1_4">
+     <widget class="QComboBox" name="lblkCNTL">
       <property name="geometry">
        <rect>
-        <x>85</x>
-        <y>77</y>
-        <width>17</width>
-        <height>20</height>
+        <x>83</x>
+        <y>27</y>
+        <width>62</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="biteCNT5_8">
-      <property name="geometry">
-       <rect>
-        <x>127</x>
-        <y>118</y>
-        <width>17</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="biteCNT1_4">
-      <property name="geometry">
-       <rect>
-        <x>85</x>
-        <y>118</y>
-        <width>17</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="swlRCTL1_4">
-      <property name="geometry">
-       <rect>
-        <x>85</x>
-        <y>162</y>
-        <width>17</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="swlRCTL5_8">
-      <property name="geometry">
-       <rect>
-        <x>127</x>
-        <y>162</y>
-        <width>17</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_193">
-      <property name="geometry">
-       <rect>
-        <x>79</x>
-        <y>10</y>
-        <width>33</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Ch1-4</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_194">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>10</y>
-        <width>34</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>Ch5-8</string>
-      </property>
+      <item>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
      </widget>
     </widget>
    </widget>
@@ -3374,17 +3399,20 @@ background-color: darkorange;
 QLabel{
 color: white;
 }
+QCheckBox {
+	color: white;
+}
 QCheckBox::indicator {
     width: 16px;
     height: 16px;
     border: 1px solid #333;
-    background-color: white;   /* inside color when unchecked */
+	color: white;
+ 	background-color: white;
 }
 
 QCheckBox::indicator:checked {
 	image: url(:/newPrefix/resources/tickmark.png);
-}
-</string>
+}</string>
     </property>
     <property name="title">
      <string>CH CTLS</string>
@@ -3478,12 +3506,12 @@ QCheckBox::indicator:checked {
       <rect>
        <x>30</x>
        <y>62</y>
-       <width>17</width>
+       <width>81</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string/>
+      <string>LEFT PRT</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="righttPrt">
@@ -3491,12 +3519,12 @@ QCheckBox::indicator:checked {
       <rect>
        <x>30</x>
        <y>101</y>
-       <width>17</width>
+       <width>81</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string/>
+      <string>RIGHT PRT</string>
      </property>
     </widget>
     <widget class="QPushButton" name="btnRND">
@@ -4222,42 +4250,6 @@ QCheckBox::indicator:checked {
        <string>354.375</string>
       </property>
      </item>
-    </widget>
-    <widget class="QLabel" name="label_195">
-     <property name="geometry">
-      <rect>
-       <x>55</x>
-       <y>60</y>
-       <width>51</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>LEFT PRT</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_196">
-     <property name="geometry">
-      <rect>
-       <x>55</x>
-       <y>100</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>9</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>RIGHT PRT</string>
-     </property>
     </widget>
    </widget>
    <widget class="QPushButton" name="btnGetStatus">

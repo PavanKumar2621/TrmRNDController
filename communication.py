@@ -136,26 +136,18 @@ class Communication(QObject):
         else:
             print("Serial port is not open")
             return None
-        
-    # Slot for reader errors
+           
     def on_reader_error(self, error):
         print(f"Serial read error: {error}")
         # QMessageBox.warning(None, "Serial Error", error)
     
     def controlsRND(self):
-        rb1 = int(self.ui.rblkCTL1_4.isChecked())
-        rb2 = int(self.ui.rblkCTL5_8.isChecked())
-        lb1 = int(self.ui.lblkCTL1_4.isChecked())
-        lb2 = int(self.ui.lblkCTL5_8.isChecked())
-        bt1 = int(self.ui.biteCNT1_4.isChecked())
-        bt2 = int(self.ui.biteCNT5_8.isChecked())
-        sw1 = int(self.ui.swlRCTL1_4.isChecked())
-        sw2 = int(self.ui.swlRCTL5_8.isChecked())
 
-        rblk_CTL = ( rb2 <<1) | rb1
-        lblk_CTL = (lb2 <<1) |lb1
-        bite_CNT =(bt2 <<1) |bt1
-        swlR_CTL =(sw2 <<1) |sw1
+        rblk_CTL = self.ui.rblkCNTL.currentIndex()
+        lblk_CTL = self.ui.lblkCNTL.currentIndex()
+        bite_CNT = self.ui.biteCNTL.currentIndex()
+        swlR_CTL = self.ui.swlRCNTL.currentIndex()
+
         left_Prt = int(self.ui.leftPrt.isChecked())
         rightt_Prt = int(self.ui.righttPrt.isChecked())
         ch_Id = self.ui.chId.currentIndex() + 1  
@@ -165,7 +157,12 @@ class Communication(QObject):
 
         # Pack 8 switch states into a single byte (bitwise)
         blk_sw = sum(self.ui.__getattribute__(f'blkSw{i}').currentIndex() << (i - 1) for i in range(1, 9))
-        tr_ctcl = sum(self.ui.__getattribute__(f'trCTCL{i}').currentIndex() << (i - 1) for i in range(1, 9))
+        
+        # bits 0-1: TRCTL1, bits 2-3: TRCTL2, bits 4-5: TRCTL3, bits 6-7: TRCTL4
+        tr_ctcl_low  = sum((self.ui.__getattribute__(f"trCTCL{i}").currentIndex() & 0x03) << ((i - 1) * 2) for i in range(1, 5)) 
+
+        # bits 0-1: TRCTL5, bits 2-3: TRCTL6, bits 4-5: TRCTL7, bits 6-7: TRCTL8
+        tr_ctcl_high = sum((self.ui.__getattribute__(f"trCTCL{i}").currentIndex() & 0x03) << ((i - 5) * 2) for i in range(5, 9))
 
         bit_data_02 = (
             (swlR_CTL & 0b11) << 6 |
@@ -179,7 +176,7 @@ class Communication(QObject):
             (left_Prt & 0b1111)
         )
 
-        data = [ 0xAA, 0x00, ch_Id, 0x00, blk_sw, tr_ctcl, bit_data_02, bit_data_04, att_6bit, phase, 0xBB ]
+        data = [ 0xAA, 0x00, ch_Id, blk_sw, tr_ctcl_low, tr_ctcl_high, bit_data_02, bit_data_04, att_6bit, phase, 0xBB ]
 
         data_bytes = bytes(data)
         # print("Control data:", data_bytes.hex("-").upper())
@@ -220,7 +217,7 @@ class Communication(QObject):
         self.ui.ontime.setText("..........")
     
     def handle_received_data(self, data):
-        if len(data) < 35:
+        if  not (data.startswith(b'\xAA') and data.endswith(b'\xBB')) and len(data) > 35:
             print("Received data too short:", data)
             return
         self._should_process = False
@@ -294,10 +291,20 @@ class Communication(QObject):
         b0 = temps[0] & 0x3F  
         b1 = temps[1] & 0x3F
         combined = (b1 << 6) | b0
-        if label_field == self.ui.v45Mon:
-            val = ((combined * 5.0) / 4096.0) * 6
-        else:
-            val = (combined * 5.0) / 4096.0
+        if label_field == self.ui.v45Mon or label_field == self.ui.v45Mon2 or label_field == self.ui.v48M1 or label_field == self.ui.v48M2:
+            Vout = ((combined * 5.0) / 4096.0)
+            val = Vout * ((36.5 + 2.0) / 2.0)  # Vin = Vout *( (R1+R2)/R1 )
+        elif label_field == self.ui.v5Mon1 or label_field == self.ui.v5Mon2:
+            Vout = ((combined * 5.0) / 4096.0)
+            val = Vout * ((1.5 + 2.0) / 2.0)  # Vin = Vout *( (R1+R2)/R1 )
+        elif label_field == self.ui.rightTemp1 or label_field == self.ui.rightTemp2 or label_field == self.ui.leftTemp1 or label_field == self.ui.leftTemp2 or label_field == self.ui.psTemp or label_field == self.ui.fpgaTemp:
+            Vout = ((combined - 28) * 5.0) / 4096.0
+            val = ((Vout / 0.004) - 273.15)
+        elif label_field == self.ui.current:
+            Vout = ((combined * 5.0) / 4096.0)
+            val = (Vout / 0.05)
+            
+        print(label_field,' ',combined,' ',Vout ,' ', val)
         label_field.setText(f"{val:.2f} {suffix}")
 
     def convertOnTime(self, packet_bytes):
