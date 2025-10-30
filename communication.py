@@ -60,10 +60,11 @@ class Communication(QObject):
                 print("Serial port opened successfully")
                 self.ui.connect.setText("Connected")
                 self.ui.connect.setStyleSheet(
-                    "QPushButton { background-color: green; color: black; border: none; height: 35px; border-radius: 5px; font-size: 16px; }"
+                    "QPushButton { background-color: green; color: white; border: none; height: 35px; border-radius: 5px; font-size: 16px; }"
                 )
                 QMessageBox.information(None, "Connection", f"Connected to {com_port} successfully!")
                 self.ui.btnRND.setEnabled(True)   # Enable send button after connecting
+                self.initiate_status_reset()
                 self.start_reader() 
             else:
                 print("Failed to open serial port")
@@ -197,6 +198,16 @@ class Communication(QObject):
             print(f"blkSw{i+1} = {bit}, byte_blk_Sw = {byte_blk_Sw:02X}")
         return byte_blk_Sw
     
+    def initiate_status_reset(self):
+        off_icon = QPixmap(u":/newPrefix/resources/Error.png")
+        for label in [
+            self.ui.fpLf1, self.ui.fpLf2, self.ui.fpLf3, self.ui.fpLf4,
+            self.ui.fpLf5, self.ui.fpLf6, self.ui.fpLf7, self.ui.fpLf8,
+            self.ui.fpRl1, self.ui.fpRl2, self.ui.fpRl3, self.ui.fpRl4,
+            self.ui.fpRl5, self.ui.fpRl6, self.ui.fpRl7, self.ui.fpRl8,
+        ]:
+            label.setPixmap(off_icon)
+
     def set_all_icons_off(self):
         off_icon = QPixmap(u":/newPrefix/resources/Off.png")
         for label in [
@@ -267,7 +278,7 @@ class Communication(QObject):
         """ Updates multiple labels based on bit positions and prints the bit position. """
         for i, label in enumerate(labels):
             status = (sys >> i) & 1
-            # print(f"Bit position {i}: {status}")
+            # print(f"Bit position for {label} is {i}: {status}")
             self.update_status(label, status)
 
     def update_status(self, label, status):
@@ -279,12 +290,6 @@ class Communication(QObject):
             label.setPixmap(pixmap)
 
     def updateField(self, temps, label_field, suffix="°C"):
-        # first_byte = temps[0]                # 0xAB
-        # second_byte_4bits = temps[1] & 0x0F  # 0x3C & 0x0F = 0x0C
-        # combined = (first_byte << 4) | second_byte_4bits
-        # self.ui.leftTemp1.setText(f"{combined:.2f}") # '2748.00'
-        # self.ui.leftTemp1.setText(f"{combined / 100:.2f} °C") # '27.48'
-
         # combined = int.from_bytes(temps, "little")
         # Extract 6 bits from LSB of each byte
 
@@ -294,17 +299,25 @@ class Communication(QObject):
         if label_field == self.ui.v45Mon or label_field == self.ui.v45Mon2 or label_field == self.ui.v48M1 or label_field == self.ui.v48M2:
             Vout = ((combined * 5.0) / 4096.0)
             val = Vout * ((36.5 + 2.0) / 2.0)  # Vin = Vout *( (R1+R2)/R1 )
+            if label_field == self.ui.v45Mon:
+                val *= 3.5
         elif label_field == self.ui.v5Mon1 or label_field == self.ui.v5Mon2:
             Vout = ((combined * 5.0) / 4096.0)
             val = Vout * ((1.5 + 2.0) / 2.0)  # Vin = Vout *( (R1+R2)/R1 )
-        elif label_field == self.ui.rightTemp1 or label_field == self.ui.rightTemp2 or label_field == self.ui.leftTemp1 or label_field == self.ui.leftTemp2 or label_field == self.ui.psTemp or label_field == self.ui.fpgaTemp:
+        elif label_field == self.ui.rightTemp1 or label_field == self.ui.leftTemp1 or label_field == self.ui.psTemp:
             Vout = ((combined - 28) * 5.0) / 4096.0
             val = ((Vout / 0.004) - 273.15)
-        elif label_field == self.ui.current:
+        elif label_field == self.ui.rightTemp2 or label_field == self.ui.leftTemp2 or label_field == self.ui.fpgaTemp:
             Vout = ((combined * 5.0) / 4096.0)
-            val = (Vout / 0.05)
-            
-        print(label_field,' ',combined,' ',Vout ,' ', val)
+            val = ((Vout / 0.004) - 152.5)
+            if label_field == self.ui.leftTemp2:
+                val += 72
+            elif label_field == self.ui.fpgaTemp:
+                val += 124
+        elif label_field == self.ui.current:
+            val = (((combined - 28) * 5.0) / 4096.0)           
+
+        # print(label_field,' ',combined,' ',Vout ,' ', val)
         label_field.setText(f"{val:.2f} {suffix}")
 
     def convertOnTime(self, packet_bytes):

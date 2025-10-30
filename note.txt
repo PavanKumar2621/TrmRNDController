@@ -1,1 +1,1 @@
-pyinstaller --onefile --windowed --name TrmRNDApp(v4) main.py 
+pyinstaller --onefile --windowed --name TrmRNDApp_v4.2 main.py 
